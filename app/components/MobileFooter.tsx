@@ -15,7 +15,7 @@ export function MobileFooter({ totalPrice, selectedSeats, onRemoveSeat, confirme
   const hasSelection = selectedSeats.length > 0;
 
   return (
-    <div className="w-full max-w-md lg:hidden fixed bottom-0 left-0 right-0 z-10">
+    <div className="w-full max-w-md lg:hidden fixed bottom-0 left-0 right-0 z-10 px-4">
       {hasSelection && !confirmed && (
         <div className="flex gap-2 mb-2">
           {selectedSeats.map((seat) => (

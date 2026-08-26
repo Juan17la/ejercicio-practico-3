@@ -37,7 +37,7 @@ export function FlightRoute({
         </svg>
         <Plane
           className="plane-fly w-5 h-5 text-[#FF6B4A]"
-          style={{ offsetPath: 'path("M 0 40 Q 122 -10 245 40")', transform: 'translateY(-45px)' }}
+          style={{ offsetPath: 'path("M 0 40 Q 172 -10 299 40")', transform: 'translateY(-45px)' }}
         />
       </div>
       <div>
