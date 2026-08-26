@@ -20,9 +20,11 @@ export function MobileRouteBanner({
         <p className="text-xs opacity-80">{originCity}</p>
       </div>
       <div className="flex-1 flex items-center justify-center px-4 relative">
-        <div className="w-full border-b border-dashed border-white/60 relative flex justify-center items-center">
-          <Plane className="w-4 h-4 text-white absolute rotate-90" />
-        </div>
+        <div className="w-full border-b border-dashed border-white/60" />
+        <Plane
+          className="plane-fly w-4 h-4 text-white"
+          style={{ offsetPath: 'path("M -150 0 L 100 0")', offsetRotate: '0deg' }}
+        />
       </div>
       <div className="text-right">
         <h3 className="text-2xl font-bold">{destinationCode}</h3>

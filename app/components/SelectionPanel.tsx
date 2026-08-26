@@ -1,12 +1,16 @@
+import { Check } from "lucide-react";
 import { Seat } from "../types/seat";
 import { useAnimatedCounter } from "../hooks/useAnimatedCounter";
 
 interface SelectionPanelProps {
   selectedSeats: Seat[];
   totalPrice: number;
+  confirmed: boolean;
+  onConfirm: () => void;
+  onReset: () => void;
 }
 
-export function SelectionPanel({ selectedSeats, totalPrice }: SelectionPanelProps) {
+export function SelectionPanel({ selectedSeats, totalPrice, confirmed, onConfirm, onReset }: SelectionPanelProps) {
   const animatedPrice = useAnimatedCounter(totalPrice);
 
   return (
@@ -57,10 +61,18 @@ export function SelectionPanel({ selectedSeats, totalPrice }: SelectionPanelProp
         </div>
 
         <button
-          disabled={selectedSeats.length === 0}
-          className="w-full bg-[#EBE5DF] text-[#78716C] font-semibold py-4 rounded-2xl disabled:opacity-60 hover:bg-[#E2DACF] transition-colors"
+          disabled={selectedSeats.length === 0 && !confirmed}
+          onClick={confirmed ? onReset : onConfirm}
+          className="w-full flex items-center justify-center gap-2 bg-[#EBE5DF] text-[#78716C] font-semibold py-4 rounded-2xl disabled:opacity-60 hover:bg-[#E2DACF] transition-colors"
         >
-          {selectedSeats.length > 0 ? "Confirm selection" : "Select a seat"}
+          {confirmed ? (
+            <>
+              <Check className="w-5 h-5" />
+              Completed
+            </>
+          ) : (
+            "Confirm selection"
+          )}
         </button>
       </div>
     </section>

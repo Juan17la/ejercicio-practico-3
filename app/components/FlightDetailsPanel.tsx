@@ -38,12 +38,12 @@ export function FlightDetailsPanel({
 
         <div className="bg-white p-5 rounded-3xl shadow-sm border border-[#F1F5F9] mb-8">
           <div className="flex items-center gap-3 mb-4">
-            <span className="w-3 h-3 rounded-full bg-[#FF6B4A]"></span>
-            <span className="font-bold text-[#1E293B]">
+            <div className="flex p-4 rounded-xl bg-[#FEEEEA]"><span className="w-3 h-3 rounded-full bg-[#FF6B4A]"></span></div>
+            <span className="text-[16px] font-bolder text-[#1E293B]">
               {selectedSeats[0]?.classType || "Business Class"}
             </span>
           </div>
-          <div className="flex gap-8 text-xs text-[#94A3B8] font-medium mb-1">
+          <div className="flex gap-8 text-xs text-[#94A3B8] font-bold mb-1">
             <span>Seat</span>
             <span>Seat</span>
           </div>
@@ -66,12 +66,12 @@ export function FlightDetailsPanel({
 
       <div className="flex gap-4">
         <div className="bg-white p-3 rounded-2xl flex-1 border border-[#F1F5F9]">
-          <p className="text-[10px] text-[#94A3B8] font-bold uppercase">Date</p>
-          <p className="text-xs font-bold text-[#1E293B]">Dec 1, 2026</p>
+          <p className="text-[14px] text-[#94A3B8] font-bold uppercase">Date</p>
+          <p className="text-sm font-bold text-[#1E293B]">Dec 1, 2026</p>
         </div>
         <div className="bg-white p-3 rounded-2xl flex-1 border border-[#F1F5F9]">
-          <p className="text-[10px] text-[#94A3B8] font-bold uppercase">Flight</p>
-          <p className="text-xs font-bold text-[#1E293B]">No 25</p>
+          <p className="text-[14px] text-[#94A3B8] font-bold uppercase">Flight</p>
+          <p className="text-sm font-bold text-[#1E293B]">No 25</p>
         </div>
       </div>
     </section>

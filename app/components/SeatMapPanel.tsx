@@ -10,17 +10,21 @@ interface SeatMapPanelProps {
   selectedSeats: Seat[];
   totalPrice: number;
   onSelectSeat: (seat: Seat) => void;
+  confirmed: boolean;
+  onConfirm: () => void;
 }
 
 export function SeatMapPanel({
   selectedSeats,
   totalPrice,
   onSelectSeat,
+  confirmed,
+  onConfirm,
 }: SeatMapPanelProps) {
   const progress = (selectedSeats.length / 2) * 100;
 
   return (
-    <section className="flex-1 min-h-screen bg-[#FFFDFD] p-4 sm:p-8 flex flex-col items-center">
+    <section className="flex-1 lg:h-screen lg:overflow-y-auto bg-[#FFFDFD] p-4 sm:p-8 pb-28 lg:pb-8 flex flex-col items-center">
       <MobileHeader selectedCount={selectedSeats.length} />
 
       <MobileRouteBanner
@@ -42,7 +46,7 @@ export function SeatMapPanel({
 
       <SeatLegend />
 
-      <div className="w-full max-w-md bg-[#F8FAFC]/50 border-2 border-[#F1F5F9] rounded-t-[250px] p-6 pt-12 flex flex-col items-center gap-8">
+      <div className="w-full max-w-lg bg-[#F8FAFC]/50 border-2 border-[#F1F5F9] rounded-t-[250px] p-6 pt-12 flex flex-col items-center gap-8">
         <SeatClassSection
           title="Business Class"
           rows={INITIAL_BUSINESS}
@@ -55,9 +59,21 @@ export function SeatMapPanel({
           selectedSeats={selectedSeats}
           onSelectSeat={onSelectSeat}
         />
+        <SeatClassSection
+          title="Economy Class"
+          rows={INITIAL_ECONOMY}
+          selectedSeats={selectedSeats}
+          onSelectSeat={onSelectSeat}
+        />
       </div>
 
-      <MobileFooter totalPrice={totalPrice} selectedCount={selectedSeats.length} />
+      <MobileFooter
+        totalPrice={totalPrice}
+        selectedSeats={selectedSeats}
+        onRemoveSeat={onSelectSeat}
+        confirmed={confirmed}
+        onConfirm={onConfirm}
+      />
     </section>
   );
 }

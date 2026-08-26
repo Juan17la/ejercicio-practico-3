@@ -8,9 +8,11 @@ import { SelectionPanel } from "./components/SelectionPanel";
 
 export default function FlightBooking() {
   const [selectedSeats, setSelectedSeats] = useState<Seat[]>([]);
+  const [confirmed, setConfirmed] = useState(false);
 
   const handleSelectSeat = (seat: Seat) => {
     if (seat.status === "taken") return;
+    if (confirmed) return;
 
     setSelectedSeats((prev) => {
       const isAlreadySelected = prev.some((s) => s.id === seat.id);
@@ -27,10 +29,20 @@ export default function FlightBooking() {
     });
   };
 
+  const handleConfirm = () => {
+    if (selectedSeats.length === 0) return;
+    setConfirmed(true);
+  };
+
+  const handleReset = () => {
+    setConfirmed(false);
+    setSelectedSeats([]);
+  };
+
   const totalPrice = selectedSeats.reduce((acc, curr) => acc + curr.price, 0);
 
   return (
-    <main className="flex flex-col lg:flex-row w-screen min-h-screen bg-[#FFFDFD] text-[#1E293B]">
+    <main className="flex flex-col lg:flex-row w-screen lg:h-screen min-h-screen bg-[#FFFDFD] text-[#1E293B]">
       <FlightDetailsPanel
         selectedSeats={selectedSeats}
         totalPrice={totalPrice}
@@ -39,10 +51,15 @@ export default function FlightBooking() {
         selectedSeats={selectedSeats}
         totalPrice={totalPrice}
         onSelectSeat={handleSelectSeat}
+        confirmed={confirmed}
+        onConfirm={handleConfirm}
       />
       <SelectionPanel
         selectedSeats={selectedSeats}
         totalPrice={totalPrice}
+        confirmed={confirmed}
+        onConfirm={handleConfirm}
+        onReset={handleReset}
       />
     </main>
   );
